@@ -1,0 +1,1 @@
+# qui ci mettiamo tutte le query 
