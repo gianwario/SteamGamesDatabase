@@ -1,0 +1,1 @@
+# qui scarichiamo il dataset e lo salviamo su mongo
