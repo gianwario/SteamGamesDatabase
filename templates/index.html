@@ -1,12 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='style/main.css') }}">
     <meta charset="UTF-8">
     <title>FlaskApp</title>
 </head>
-<body>
-    <h1>Hello World!</h1>
-    <h2>Welcome to FlaskApp!</h2>
-    <p>{{ test }}</p>
+<body style="margin: 0px;">
+    <!-- Header -->
+    <div class="header">
+        <div>
+            <a href="#home">Home</a>
+        </div>
+        <div>
+            LOGO
+        </div>
+        <div>
+            <a href="#queries">Queries</a>
+        </div>
+    </div>
+    <!-- Intro -->
+    <div id="home">
+        <div id="content">
+            Hi, welcome, ueue, ooo
+        </div>
+    </div>
+    <!-- Queries -->
+    <div id="queries">
+        <div class="query-container">
+            QUERY
+        </div>
+        <div class="query-container">
+            QUERY
+        </div>
+        <div class="query-container">
+            QUERY
+        </div>
+        <div class="query-container">
+            QUERY
+        </div>
+        <div class="query-container">
+            QUERY
+        </div>
+        <div class="query-container">
+            QUERY
+        </div>
+        <div class="query-container">
+            QUERY
+        </div>
+    </div>
+
 </body>
 </html>
