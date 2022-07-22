@@ -20,10 +20,10 @@ def clean_dataset():
     print(5)
     dataset = modify_price(dataset)
     print(6)
-
+    dataset = modify_pegi(dataset)
+    print(7)
     dataset.reset_index(drop=True, inplace=True)
     print(f"ENDING SHAPE: {dataset.shape}")
-    modify_pegi(dataset)
     pd.DataFrame(dataset).to_csv(path.join(project_path, "clean_dataset.csv"))
 
 # Funzione che elimina i valori nulli
@@ -99,8 +99,25 @@ def modify_price(dataset):
 
 def modify_pegi(dataset):
 
-    tmp = dataset.drop_duplicates(subset = ['pegi_url'])
-    print(tmp['pegi_url'])
+    for index, row in dataset.iterrows():
+        if "ESRB/m" in row['pegi_url']:
+            dataset.loc[index, 'pegi_url'] = "Mature 17+"
+        elif "ESRB/e" in row['pegi_url']:
+            dataset.loc[index, 'pegi_url'] = "Everyone"
+        elif "ESRB/t" in row['pegi_url']:
+            dataset.loc[index, 'pegi_url'] = "Teen"
+        elif "ESRB/e10" in row['pegi_url']:
+            dataset.loc[index, 'pegi_url'] = "Everyone 10+"
+        elif "ESRB/rp" in row['pegi_url']:
+            dataset.loc[index, 'pegi_url'] = "Rate Pending"
+        elif "ESRB/ao" in row['pegi_url']:
+            dataset.loc[index, 'pegi_url'] = "Adults Only 18+"
+        elif "ESRB/ec" in row['pegi_url']:
+            dataset.loc[index, 'pegi_url'] = "Early Childhood"
+        elif "CSRR/G" in row['pegi_url']:
+            dataset.loc[index, 'pegi_url'] = "Everyone (China)"
+    
+    dataset = dataset.rename(columns={"pegi_url":"pegi_desc"})
 
     return dataset
 
