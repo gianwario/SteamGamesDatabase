@@ -2,6 +2,7 @@ import pandas as pd
 import os
 from os import path
 import re
+from mongo_connection import initialize_db, mongo_connection
 
 project_path = os.getcwd()
 
@@ -24,6 +25,10 @@ def clean_dataset():
     print(7)
     dataset.reset_index(drop=True, inplace=True)
     print(f"ENDING SHAPE: {dataset.shape}")
+
+    coll = mongo_connection()
+    initialize_db(dataset, coll)
+
     pd.DataFrame(dataset).to_csv(path.join(project_path, "clean_dataset.csv"))
 
 # Funzione che elimina i valori nulli
