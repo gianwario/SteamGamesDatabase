@@ -1,5 +1,6 @@
 # qui ci mettiamo tutte le query 
-
+from mongo_connection import mongo_connection
+import pprint
 
 # inserimento nuovo gioco
 
@@ -8,6 +9,12 @@
 # cancellazione di un videogioco
 
 # ricerca per nome
+def find_game_by_name(search):
+    print(".*"+search+".*")
+    collection = mongo_connection()
+    query = collection.find({"name" : { '$regex': ".*"+search+".*"}})
+    pprint.pprint(list(query))
+    return list(query)
 
 # ricerca per categoria (anche più di una)
 
