@@ -60,5 +60,36 @@ def find_orderby_rating():
     pprint.pprint(results)
     return render_template('/query.html', results=results, size=len(results), title="Ricerca ordinata per rating")
 
+@app.route("/query/insert_game", methods=['POST'])
+def insert_game():
+    name = request.form.get("name")
+    month = request.form.get("month")
+    day = request.form.get("day")
+    year = request.form.get("year")
+    date = month + " " + day + ", " + year
+    url = request.form.get("url")
+    img_url = request.form.get("img_url")
+    if img_url == None or img_url == "":
+        img_url = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png"
+
+    reviews = {'count': request.form.get("n_rev"),
+               'value': request.form.get("rating")}
+    price = request.form.get("price")
+    pegi = request.form.get("pegi")
+    categories = request.form.getlist("categories")
+
+    results = query.insert_new_game(date, name,
+                                    img_url,
+                                    pegi,
+                                    price,
+                                    reviews,
+                                    categories,
+                                    url)
+    pprint.pprint(results)
+    return render_template('/query.html', results=results, size=len(results), title="Inserimento gioco")
+
+@app.route("/query/update_game", methods=['POST'])
+def update_game():
+    return
 
 app.run(port=5005)

@@ -2,8 +2,22 @@
 from mongo_connection import mongo_connection
 
 # inserimento nuovo gioco
+def insert_new_game(date, name, img_url, pegi_desc, price, reviews, tags, url):
+    collection = mongo_connection()
+    new_game = {'date': date,
+                'img_url': img_url,
+                'name': name,
+                'pegi_desc': pegi_desc,
+                'price': price,
+                'reviews': reviews,
+                'tags': tags,
+                'url': url}
+    collection.insert_one(new_game)
+
+    return list(find_game_by_name(new_game['name']))
 
 # modifica informazioni di un videogioco
+
 
 # cancellazione di un videogioco
 

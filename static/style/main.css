@@ -40,11 +40,27 @@ a:visited {
     margin-bottom: 100px;
 }
 
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
 .query-container {
     width:75%;
     margin-top: 100px;
     border: 2px solid black;
     height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.query-container-form {
+    width:75%;
+    margin-top: 100px;
+    border: 2px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,6 +87,11 @@ a:visited {
     padding-bottom: 20px;
     font-size: 24px;
 
+}
+
+.label-form {
+    padding-bottom: 4px;
+    font-size: 20px;
 }
 
 .form-text {

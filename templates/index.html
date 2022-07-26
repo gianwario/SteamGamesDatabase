@@ -1,94 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static',filename='style/main.css') }}"
-    />
-    <meta charset="UTF-8" />
-    <title>FlaskApp</title>
-  </head>
+<head>
+  <link
+          rel="stylesheet"
+          type="text/css"
+          href="{{ url_for('static',filename='style/main.css') }}"
+  />
+  <meta charset="UTF-8" />
+  <title>FlaskApp</title>
+</head>
 
-  <body style="margin: 0px">
-    <!-- Header -->
-    <div class="header">
-      <div>
-        <a href="#home">Home</a>
+<body style="margin: 0px">
+<!-- Header -->
+<div class="header">
+  <div>
+    <a href="#home">Home</a>
+  </div>
+  <div>LOGO</div>
+  <div>
+    <a href="#queries">Queries</a>
+  </div>
+</div>
+<!-- Intro -->
+<div id="home">
+  <div id="content">Hi, welcome, ueue, ooo</div>
+</div>
+<!-- Queries -->
+<div id="queries">
+  <div class="query-container">
+    <div class="query-title">Ricerca per nome (LIKE)</div>
+    <form action="/query/find_by_name" method="post">
+      <div class="query-1">
+        <div class="form-row">
+          <div class="form-text">Nome del gioco</div>
+          <input type="text" name="name" />
+        </div>
+        <button type="submit" class="query-button">Ricerca</button>
       </div>
-      <div>LOGO</div>
-      <div>
-        <a href="#queries">Queries</a>
+    </form>
+  </div>
+  <div class="query-container">
+    <div class="query-title">Ricerca per categoria (EQUAL)</div>
+    <form action="/query/find_by_category" method="post">
+      <div class="query-1">
+        <div class="form-row">
+          <div class="form-text">Categoria</div>
+          <input type="text" name="category" />
+        </div>
+        <button type="submit" class="query-button">Ricerca</button>
       </div>
+    </form>
+  </div>
+  <div class="query-container">
+    <div class="query-title">Ricerca per recensioni</div>
+    <form action="/query/find_by_review_count" method="post">
+      <div class="query-1">
+        <div class="form-row">
+          <div class="form-text">Numero recensioni</div>
+          <input type="number" name="count" />
+        </div>
+        <button type="submit" class="query-button">Ricerca</button>
+      </div>
+    </form>
+  </div>
+  <div class="query-container">
+    <div class="query-title">Ricerca per rating recensioni</div>
+    <form action="/query/find_by_review_rating" method="post">
+      <div class="query-1">
+        <div class="form-row">
+          <div class="form-text">Rating</div>
+          <input type="number" name="rating" />
+        </div>
+        <button type="submit" class="query-button">Ricerca</button>
+      </div>
+    </form>
+  </div>
+  <div class="query-container">
+    <div class="query-title">Ricerca ordinata per prezzo</div>
+    <form action="/query/find_orderby_price" method="post">
+      <button type="submit" class="query-button">Ricerca</button>
+    </form>
+  </div>
+  <div class="query-container">
+    <div class="query-title">Ricerca ordinata per rating recensione</div>
+    <form action="/query/find_orderby_rating" method="post">
+      <button type="submit" class="query-button">Ricerca</button>
+    </form>
+  </div>
+
+  <div class="query-container-form">
+    <div class="query-title" style="margin-top: 10px">Inserimento nuovo gioco</div>
+    <div id="form-container">
+      <form action="/query/insert_game" method="post" style="display:flex; flex-direction: column; margin-bottom: 30px">
+        <div style="display:flex; flex-direction: row">
+          <div class="form-fields">
+            <label class="label-form"  for="name">Nome</label>
+            <input type="text" id="name" name="name" required><br>
+            <label class="label-form"  for="url">URL</label>
+            <input type="text" id="url" name="url" required><br>
+            <label class="label-form"  for="date-div">Data</label>
+            <div id="date-div" style="display:flex; flex-direction: row">
+              <input type="number" id="day" name="day" min="1" max = "31" value="1" step="1">
+              <select name="month" id="month">
+                <option value="Jan">January</option>
+                <option value="Feb">February</option>
+                <option value="Mar">March</option>
+                <option value="Apr">April</option>
+                <option value="May">May</option>
+                <option value="Jun">June</option>
+                <option value="Jul">July</option>
+                <option value="Aug">August</option>
+                <option value="Sep">September</option>
+                <option value="Oct">October</option>
+                <option value="Nov">November</option>
+                <option value="Dec">December</option>
+              </select>
+              <input type="number" id="year" name="year" min="1900" max = "2022" value="2022" step="1">
+            </div><br>
+            <label class="label-form"  for="img_url">Immagine di copertina (URL)</label>
+            <input type="text" id="img_url" name="img_url"><br>
+          </div>
+
+          <div class="form-fields">
+            <label class="label-form"  for="price">Prezzo</label>
+            <input type="number" id="price" name="price" min="0" value="0" step=".01"><br>
+
+            <label class="label-form"  for="n_rev">Numero recensioni</label>
+            <input type="number" id="n_rev" name="n_rev" min="0" value="0" step="1"><br>
+
+            <label class="label-form"  for="rating">Rating</label>
+            <input type="number" id="rating" name="rating" min="0" max = "100" value="0" step="1"><br>
+
+            <label class="label-form" for="categories">Categorie (scelta multipla)</label>
+            <select name="categories" id="categories" multiple required>
+              <option value="Single Player">Single Player</option>
+              <option value="Online PvP">Online PvP</option>
+              <option value="Trading Cards">Trading Cards</option>
+              <option value="MMO">MMO</option>
+              <option value="Online Co-op">Online Co-op</option>
+              <option value="Cross-Platform">Cross-Platform</option>
+              <option value="Multiplayer">Multiplayer</option>
+              <option value="In-App Purchases">In-App Purchases</option>
+              <option value="Steam Achievements">Steam Achievements</option>
+              <option value="Shared/Split Screen">Shared/Split Screen</option>
+              <option value="LAN Co-op">LAN Co-op</option>
+              <option value="Remote Play">Remote Play</option>
+              <option value="Full controller">Full controller</option>
+              <option value="Steam Cloud">Steam Cloud</option>
+              <option value="Partial Controller">Partial Controller</option>
+            </select>
+          </div>
+
+          <div class="form-fields">
+
+            <label class="label-form"  for="pegi">PEGI</label><br>
+            <div id="pegi">
+              <input type="radio" id="mature" value="Mature 17+" name="pegi">
+              <label for="mature">Mature 17+</label><br>
+              <input type="radio" id="everyone" value="Everyone" name="pegi" checked="checked">
+              <label for="everyone">Everyone</label><br>
+              <input type="radio" id="teen" value="Teen" name="pegi">
+              <label for="teen">Teen</label><br>
+              <input type="radio" id="ten-plus" value="Everyone 10+" name="pegi">
+              <label for="ten-plus">Everyone 10+</label><br>
+              <input type="radio" id="pending" value="Rating Pending" name="pegi">
+              <label for="pending">Rating Pending</label><br>
+              <input type="radio" id="adults" value="Adults Only 18+" name="pegi">
+              <label for="adults">Adults Only 18+</label><br>
+              <input type="radio" id="early" value="Early Childhood" name="pegi">
+              <label for="early">Early Childhood</label><br>
+              <input type="radio" id="china" value="Everyone (China)" name="pegi">
+              <label for="china">Everyone (China)</label><br>
+            </div>
+
+          </div>
+        </div>
+        <button type="submit" class="query-button">Inserisci</button>
+      </form>
     </div>
-    <!-- Intro -->
-    <div id="home">
-      <div id="content">Hi, welcome, ueue, ooo</div>
-    </div>
-    <!-- Queries -->
-    <div id="queries">
-      <div class="query-container">
-        <div class="query-title">Ricerca per nome (LIKE)</div>
-        <form action="/query/find_by_name" method="post">
-          <div class="query-1">
-            <div class="form-row">
-              <div class="form-text">Nome del gioco</div>
-              <input type="text" name="name" />
-            </div>
-            <button type="submit" class="query-button">Ricerca</button>
-          </div>
-        </form>
-      </div>
-      <div class="query-container">
-        <div class="query-title">Ricerca per categoria (EQUAL)</div>
-        <form action="/query/find_by_category" method="post">
-          <div class="query-1">
-            <div class="form-row">
-              <div class="form-text">Categoria</div>
-              <input type="text" name="category" />
-            </div>
-            <button type="submit" class="query-button">Ricerca</button>
-          </div>
-        </form>
-      </div>
-      <div class="query-container">
-        <div class="query-title">Ricerca per recensioni</div>
-        <form action="/query/find_by_review_count" method="post">
-          <div class="query-1">
-            <div class="form-row">
-              <div class="form-text">Numero recensioni</div>
-              <input type="number" name="count" />
-            </div>
-            <button type="submit" class="query-button">Ricerca</button>
-          </div>
-        </form>
-      </div>
-      <div class="query-container">
-        <div class="query-title">Ricerca per rating recensioni</div>
-        <form action="/query/find_by_review_rating" method="post">
-          <div class="query-1">
-            <div class="form-row">
-              <div class="form-text">Rating</div>
-              <input type="number" name="rating" />
-            </div>
-            <button type="submit" class="query-button">Ricerca</button>
-          </div>
-        </form>
-      </div>
-      <div class="query-container">
-        <div class="query-title">Ricerca ordinata per prezzo</div>
-        <form action="/query/find_orderby_price" method="post">
-          <button type="submit" class="query-button">Ricerca</button>
-        </form>
-      </div>
-      <div class="query-container">
-        <div class="query-title">Ricerca ordinata per rating recensione</div>
-        <form action="/query/find_orderby_rating" method="post">
-          <button type="submit" class="query-button">Ricerca</button>
-        </form>
-      </div>
-      <div class="query-container">QUERY</div>
-      <div class="query-container">QUERY</div>
-    </div>
-  </body>
+  </div>
+
+  <div class="query-container">QUERY</div>
+</div>
+</body>
 </html>
