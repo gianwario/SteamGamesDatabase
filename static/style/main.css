@@ -3,7 +3,9 @@ html {
 }
 
 body {
-    background-color: #a8dadc;
+    background-color: #e7e7e7;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: 900;
 }
 
 .header {
@@ -16,7 +18,7 @@ body {
     height: 80px;
     position: fixed;
     top: 0;
-    background-color: #1d3557;
+    background-color: #071120;
     font-size: 28px;
 }
 
@@ -27,24 +29,29 @@ header a {
 
 a {
     text-decoration: none;
+    color: #071120;
 }
 
 a:visited {
-    color: black;
+    color: #384456;
 }
 
 #home {
     height: 100vh;
-    background-color:#1d3557 ;
+    background-color:#071120 ;
+    background-image: url("https://i.ibb.co/0rmdVnK/sfondo-blu.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
 #content {
     display: flex;
     flex-direction: row;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 #home-text {
@@ -53,9 +60,9 @@ a:visited {
     align-items: center;
     justify-content: center;
     font-size: 42px;
-    margin-left: 200px;
-    width: 420px;
-    color: white;
+    margin-left: 100px;
+    color: #e7e7e7;
+    text-shadow: 5px 10px #02070e;
 }
 
 #queries {
@@ -73,9 +80,11 @@ a:visited {
 }
 
 .query-container {
-    width:75%;
-    margin-top: 100px;
-    border: 2px solid #e63946;
+    width:68%;
+    margin-top: 50px;
+    border: 1px solid #02041e;
+    background-color: #dfdfdf;
+    border-radius: 2px;
     height: 200px;
     display: flex;
     flex-direction: column;
@@ -84,9 +93,9 @@ a:visited {
 }
 
 .query-container-form {
-    width:75%;
+    width:68%;
     margin-top: 100px;
-    border: 2px solid #e63946;
+    border: 1px solid #02041e;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -111,13 +120,25 @@ a:visited {
 
 .query-title {
     padding-bottom: 20px;
-    font-size: 24px;
+    font-size: 26px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: 900;
 
 }
 
 .label-form {
     padding-bottom: 4px;
     font-size: 20px;
+    color: #071120;
+}
+
+.text-field {
+    border: 1px solid #e5e7f2;
+    background: #f9f9f9;
+    padding: 8px 10px 8px 10px;
+    border-radius: 4px;
+    color: #343e4c;
+    font-size: 0.96em;
 }
 
 .form-text {
@@ -128,6 +149,40 @@ a:visited {
     align-self: center;
     margin-top: 20px;
     width: 120px;
+    border: 1px solid #071120;
+    border-radius: 5px;
+    background-color: #071120;
+    padding: 8px 10px 8px 10px;
+    color: white;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+.query-button:hover {
+    background-color: #384456;
+    border: 1px solid #384456;
+    cursor:pointer;
+}
+
+.modify-button {
+    align-self: center;
+    margin-top: 20px;
+    width: 120px;
+    border: 1px solid #071120;
+    border-radius: 5px;
+    background-color: #071120;
+    padding: 8px 10px 8px 10px;
+    color: white;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+.modify-button:hover {
+    background-color: #384456;
+    border: 1px solid #384456;
+    cursor:pointer;
 }
 
 .query-1 {
@@ -137,10 +192,31 @@ a:visited {
     justify-content: center;
 }
 
-table {
-    text-align: left;
+#results-table {
+  font-weight: 200px;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-th, td {
-    min-width: 100px;
+#results-table td, #results-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  min-width: 100px;
+}
+
+#results-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#results-table tr:hover {background-color: #ddd;}
+
+#results-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #071120;
+  color: white;
+  min-width: 100px;
+}
+
+table {
+    text-align: center;
 }
