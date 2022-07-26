@@ -16,16 +16,33 @@
       <div>
         <a href="#home">HOME</a>
       </div>
-      <div><img width="200" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Steam_2016_logo_black.svg/2560px-Steam_2016_logo_black.svg.png"></div>
+      <div>
+        <img
+          width="200"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Steam_2016_logo_black.svg/2560px-Steam_2016_logo_black.svg.png"
+        />
+      </div>
       <div>
         <a href="#queries">QUERIES</a>
       </div>
     </div>
+
     <!-- Intro -->
     <div id="home">
       <div id="content">
-        <div style="padding-left: 200px"><img width="400" src="https://cdn.freebiesupply.com/images/large/2x/steam-logo-black-transparent.png"/></div>
-        <div id="home-text"><div>This application allows the user to query a database containing videogames available on the platform Steam. Use one of different queries to interact with it!</div></div>
+        <div style="padding-left: 200px">
+          <img
+            width="400"
+            src="https://cdn.freebiesupply.com/images/large/2x/steam-logo-black-transparent.png"
+          />
+        </div>
+        <div id="home-text">
+          <div>
+            This application allows the user to query a database containing
+            videogames available on the platform Steam. Use one of different
+            queries to interact with it!
+          </div>
+        </div>
       </div>
     </div>
     <!-- Queries -->
@@ -90,7 +107,183 @@
           <button type="submit" class="query-button">Ricerca</button>
         </form>
       </div>
-      <div class="query-container">QUERY</div>
+      <div class="query-container-form">
+        <div class="query-title" style="margin-top: 10px">
+          Inserimento nuovo gioco
+        </div>
+        <div id="form-container">
+          <form
+            action="/query/insert_game"
+            method="post"
+            style="display: flex; flex-direction: column; margin-bottom: 30px"
+          >
+            <div style="display: flex; flex-direction: row">
+              <div class="form-fields">
+                <label class="label-form" for="name">Nome</label>
+                <input type="text" id="name" name="name" required /><br />
+                <label class="label-form" for="url">URL</label>
+                <input type="text" id="url" name="url" required /><br />
+                <label class="label-form" for="date-div">Data</label>
+                <div id="date-div" style="display: flex; flex-direction: row">
+                  <input
+                    type="number"
+                    id="day"
+                    name="day"
+                    min="1"
+                    max="31"
+                    value="1"
+                    step="1"
+                  />
+                  <select name="month" id="month">
+                    <option value="Jan">January</option>
+                    <option value="Feb">February</option>
+                    <option value="Mar">March</option>
+                    <option value="Apr">April</option>
+                    <option value="May">May</option>
+                    <option value="Jun">June</option>
+                    <option value="Jul">July</option>
+                    <option value="Aug">August</option>
+                    <option value="Sep">September</option>
+                    <option value="Oct">October</option>
+                    <option value="Nov">November</option>
+                    <option value="Dec">December</option>
+                  </select>
+                  <input
+                    type="number"
+                    id="year"
+                    name="year"
+                    min="1900"
+                    max="2022"
+                    value="2022"
+                    step="1"
+                  />
+                </div>
+                <br />
+                <label class="label-form" for="img_url"
+                  >Immagine di copertina (URL)</label
+                >
+                <input type="text" id="img_url" name="img_url" /><br />
+              </div>
+
+              <div class="form-fields">
+                <label class="label-form" for="price">Prezzo</label>
+                <input
+                  type="number"
+                  id="price"
+                  name="price"
+                  min="0"
+                  value="0"
+                  step=".01"
+                /><br />
+
+                <label class="label-form" for="n_rev">Numero recensioni</label>
+                <input
+                  type="number"
+                  id="n_rev"
+                  name="n_rev"
+                  min="0"
+                  value="0"
+                  step="1"
+                /><br />
+
+                <label class="label-form" for="rating">Rating</label>
+                <input
+                  type="number"
+                  id="rating"
+                  name="rating"
+                  min="0"
+                  max="100"
+                  value="0"
+                  step="1"
+                /><br />
+
+                <label class="label-form" for="categories"
+                  >Categorie (scelta multipla)</label
+                >
+                <select name="categories" id="categories" multiple required>
+                  <option value="Single Player">Single Player</option>
+                  <option value="Online PvP">Online PvP</option>
+                  <option value="Trading Cards">Trading Cards</option>
+                  <option value="MMO">MMO</option>
+                  <option value="Online Co-op">Online Co-op</option>
+                  <option value="Cross-Platform">Cross-Platform</option>
+                  <option value="Multiplayer">Multiplayer</option>
+                  <option value="In-App Purchases">In-App Purchases</option>
+                  <option value="Steam Achievements">Steam Achievements</option>
+                  <option value="Shared/Split Screen">
+                    Shared/Split Screen
+                  </option>
+                  <option value="LAN Co-op">LAN Co-op</option>
+                  <option value="Remote Play">Remote Play</option>
+                  <option value="Full controller">Full controller</option>
+                  <option value="Steam Cloud">Steam Cloud</option>
+                  <option value="Partial Controller">Partial Controller</option>
+                </select>
+              </div>
+
+              <div class="form-fields">
+                <label class="label-form" for="pegi">PEGI</label><br />
+                <div id="pegi">
+                  <input
+                    type="radio"
+                    id="mature"
+                    value="Mature 17+"
+                    name="pegi"
+                  />
+                  <label for="mature">Mature 17+</label><br />
+                  <input
+                    type="radio"
+                    id="everyone"
+                    value="Everyone"
+                    name="pegi"
+                    checked="checked"
+                  />
+                  <label for="everyone">Everyone</label><br />
+                  <input type="radio" id="teen" value="Teen" name="pegi" />
+                  <label for="teen">Teen</label><br />
+                  <input
+                    type="radio"
+                    id="ten-plus"
+                    value="Everyone 10+"
+                    name="pegi"
+                  />
+                  <label for="ten-plus">Everyone 10+</label><br />
+                  <input
+                    type="radio"
+                    id="pending"
+                    value="Rating Pending"
+                    name="pegi"
+                  />
+                  <label for="pending">Rating Pending</label><br />
+                  <input
+                    type="radio"
+                    id="adults"
+                    value="Adults Only 18+"
+                    name="pegi"
+                  />
+                  <label for="adults">Adults Only 18+</label><br />
+                  <input
+                    type="radio"
+                    id="early"
+                    value="Early Childhood"
+                    name="pegi"
+                  />
+                  <label for="early">Early Childhood</label><br />
+                  <input
+                    type="radio"
+                    id="china"
+                    value="Everyone (China)"
+                    name="pegi"
+                  />
+                  <label for="china">Everyone (China)</label><br />
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="query-button">Inserisci</button>
+          </form>
+        </div>
+      </div>
+
       <div class="query-container">QUERY</div>
     </div>
   </body>
