@@ -64,11 +64,15 @@ def modify_reviews(dataset):
 
     for index, row in dataset.iterrows():
         text = row['user_reviews']
+        
         users = re.search(r'\((.*?)\)', text)
         percentage = re.search(r'- (.*?)%', text)
 
         if users and percentage:
             users = users.group(1)
+            users_list = users.split(",") 
+            if len(users_list) > 1:
+                users = users_list[0]+users_list[1] 
             percentage = percentage.group(1)
             new_review = users + ';' + percentage
             dataset.loc[index, 'user_reviews'] = new_review
@@ -90,12 +94,12 @@ def modify_price(dataset):
             price = re.search(r'([0-9]+[.][0-9]+)', price)
             if price:
                 price = price.group(1)
-                dataset.loc[index, 'price'] = price
+                dataset.loc[index, 'price'] = float(price)
             else:
                 dataset = dataset.drop(index, axis=0)
 
         elif "Free to Play" in row['price']:
-                dataset.loc[index, 'price'] = "0.00"
+                dataset.loc[index, 'price'] = float(0.0)
 
         else:
             dataset = dataset.drop(index, axis=0)
@@ -126,4 +130,4 @@ def modify_pegi(dataset):
 
     return dataset
 
-#clean_dataset()
+clean_dataset()

@@ -27,19 +27,69 @@
     <!-- Queries -->
     <div id="queries">
         <div class="query-container">
-            QUERY
+            <div class="query-title">Ricerca per nome (LIKE)</div>
+                <form action="/query/find_by_name" method="post">
+                    <div class="query-1">
+                        <div class="form-row">
+                            <div class="form-text">Nome del gioco</div>
+                            <input type="text" name="name"/>
+                        </div>
+                        <button type="submit" class="query-button">Ricerca</button>
+                    </div>
+                </form>
         </div>
         <div class="query-container">
-            QUERY
+            <div class="query-title">Ricerca per categoria (EQUAL)</div>
+                <form action="/query/find_by_category" method="post">
+                    <div class="query-1">
+                        <div class="form-row">
+                            <div class="form-text">Categoria</div>
+                            <input type="text" name="category"/>
+                        </div>
+                        <button type="submit" class="query-button">Ricerca</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="query-container">
-            QUERY
+            <div class="query-title">Ricerca per recensioni</div>
+                <form action="/query/find_by_review_count" method="post">
+                    <div class="query-1">
+                        <div class="form-row">
+                            <div class="form-text">Numero recensioni</div>
+                            <input type="number" name="count"/>
+                        </div>
+                        <button type="submit" class="query-button">Ricerca</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="query-container">
-            QUERY
+            <div class="query-title">Ricerca per rating recensioni</div>
+                <form action="/query/find_by_review_rating" method="post">
+                    <div class="query-1">
+                        <div class="form-row">
+                            <div class="form-text">Rating</div>
+                            <input type="number" name="rating"/>
+                        </div>
+                        <button type="submit" class="query-button">Ricerca</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="query-container">
-            QUERY
+            <div class="query-title">Ricerca ordinata per prezzo</div>
+                <form action="/query/find_orderby_price" method="post">
+                        <button type="submit" class="query-button">Ricerca</button>
+                 </form>
+            </div>
+        </div>
+        <div class="query-container">
+            <div class="query-title">Ricerca ordinata per rating recensione</div>
+                <form action="/query/find_orderby_rating" method="post">
+                        <button type="submit" class="query-button">Ricerca</button>
+                 </form>
+            </div>
         </div>
         <div class="query-container">
             QUERY

@@ -26,12 +26,12 @@ def initialize_db(dataset, collection):
                 "name": row["name"],
                 "tags": tags,
                 "reviews":{
-                    "value":revs[0],
-                    "count":revs[1]
+                    "value":int(revs[1]),
+                    "count":int(revs[0])
                 },
                 "img_url": row["img_url"],
                 "date": row["date"],
-                "price": row["price"],
+                "price": float(row["price"]),
                 "pegi_desc": row["pegi_desc"],
             }
             collection.insert_one(element)
