@@ -54,6 +54,25 @@ def find_orderby_price():
     pprint.pprint(results)
     return render_template('/query.html', results=results, size=len(results), title="Ricerca ordinata per prezzo")
 
+@app.route("/query/find_by_price_range", methods=['POST'])
+def find_by_price_range():
+    min = float(request.form.get("min_price"))
+    max = float(request.form.get("max_price"))
+    results = query.find_game_by_price_range(min, max)
+    return render_template('/query.html', results=results, size=len(results), title="Ricerca per range di prezzo")
+
+@app.route("/query/find_by_year", methods=['POST'])
+def find_by_year():
+    year = request.form.get("year_out")
+    results = query.find_game_by_year(year)
+    return render_template('/query.html', results=results, size=len(results), title="Ricerca per anno di uscita")
+
+@app.route("/query/find_by_pegi", methods=['POST'])
+def find_by_pegi():
+    pegi = request.form.get("pegi_type")
+    results = query.find_game_by_pegi(pegi)
+    return render_template('/query.html', results=results, size=len(results), title="Ricerca per PEGI")
+
 @app.route("/query/find_orderby_rating", methods=['POST'])
 def find_orderby_rating():
     results = query.find_game_orderby_rating()
@@ -127,5 +146,15 @@ def delete():
     url = request.form["url"] 
     results = query.delete_by_url(url)
     return render_template("index.html")
+
+@app.route("/query/find_by_rating_ratio", methods = ['POST'])
+def find_by_rating_ratio():
+    results = query.find_best_rating_ratio()
+    pprint.pprint(results)
+    return render_template('/query.html',
+                           results=results,
+                           size=len(results),
+                           title="Ricerca migliori 20 giochi per rapporto Rating/Prezzo")
+
 
 app.run(port=5005)

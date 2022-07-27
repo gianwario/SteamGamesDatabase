@@ -49,6 +49,7 @@
     <div id="queries">
       <div class="query-container">
         <div class="query-title">Ricerca per nome (LIKE)</div>
+        <h4 class = "info-box"> Ricerca giochi che contengono nel nome la stringa data</h4>
         <form action="/query/find_by_name" method="post">
           <div class="query-1">
             <div class="form-row">
@@ -61,6 +62,7 @@
       </div>
       <div class="query-container">
         <div class="query-title">Ricerca per categoria (EQUAL)</div>
+        <h4 class = "info-box"> Ricerca giochi per categoria per match esatto della stringa data</h4>
         <form action="/query/find_by_category" method="post">
           <div class="query-1">
             <div class="form-row">
@@ -73,11 +75,12 @@
       </div>
       <div class="query-container">
         <div class="query-title">Ricerca per recensioni</div>
+        <h4 class = "info-box"> Ricerca giochi con un numero di recensioni maggiore o uguale di quello specificato</h4>
         <form action="/query/find_by_review_count" method="post">
           <div class="query-1">
             <div class="form-row">
               <div class="form-text">Numero recensioni</div>
-              <input type="number" class = "text-field"  class = "text-field"  name="count" />
+              <input type="number" class = "text-field" min = "0" step = "1" class = "text-field"  name="count" required/>
             </div>
             <button type="submit" class="query-button">Ricerca</button>
           </div>
@@ -85,11 +88,12 @@
       </div>
       <div class="query-container">
         <div class="query-title">Ricerca per rating recensioni</div>
+        <h4 class = "info-box"> Ricerca giochi con una percentuale di rating maggiore o uguale di quella specificata</h4>
         <form action="/query/find_by_review_rating" method="post">
           <div class="query-1">
             <div class="form-row">
               <div class="form-text">Rating</div>
-              <input type="number" class = "text-field" name="rating" />
+              <input type="number" class = "text-field" min = "0" max = "100" step = "1" name="rating" required/>
             </div>
             <button type="submit" class="query-button">Ricerca</button>
           </div>
@@ -97,12 +101,66 @@
       </div>
       <div class="query-container">
         <div class="query-title">Ricerca ordinata per prezzo</div>
+        <h4 class = "info-box"> Mostra il database ordinato per prezzo crescente </h4>
         <form action="/query/find_orderby_price" method="post">
           <button type="submit" class="query-button">Ricerca</button>
         </form>
       </div>
       <div class="query-container">
+        <div class="query-title">Ricerca per range di prezzo</div>
+        <h4 class = "info-box"> Ricerca giochi con prezzo compreso fra i valori specificati</h4>
+        <form action="/query/find_by_price_range" method="post">
+          <div class="query-1">
+            <div class="form-row">
+              <div class="form-text">Min</div>
+              <input type="number" class = "text-field" min = "0" max = "999" step = ".01" name="min_price" required/>
+            </div>
+            <div class="form-row">
+              <div class="form-text">Max</div>
+              <input type="number" class = "text-field" min = "0" max = "999" step = ".01" name="max_price" required/>
+            </div>
+            <button type="submit" class="query-button">Ricerca</button>
+          </div>
+        </form>
+      </div>
+      <div class="query-container">
+        <div class="query-title">Ricerca per anno di uscita</div>
+        <h4 class = "info-box"> Ricerca giochi usciti nell'anno specificato</h4>
+        <form action="/query/find_by_year" method="post">
+          <div class="query-1">
+            <div class="form-row">
+              <div class="form-text">Anno di uscita</div>
+              <input type="number" class = "text-field" min = "1900" max = "2022" step = "1" class = "text-field"  name="year_out" required/>
+            </div>
+            <button type="submit" class="query-button">Ricerca</button>
+          </div>
+        </form>
+      </div>
+      <div class="query-container">
+        <div class="query-title">Ricerca per PEGI</div>
+        <h4 class = "info-box"> Ricerca giochi della tipologia di PEGI selezionata</h4>
+        <form action="/query/find_by_pegi" method="post">
+          <div class="query-1">
+            <div class="form-row">
+              <div class="form-text">PEGI</div>
+              <select name="pegi_type"  class = "text-field" id="pegi_type" required>
+                    <option value="Mature 17+">Mature 17+</option>
+                    <option value="Everyone">Everyone</option>
+                    <option value="Teen">Teen</option>
+                    <option value="Everyone 10+">Everyone 10+</option>
+                    <option value="Rating Pending">Rating Pending</option>
+                    <option value="Adults Only 18+">Adults Only 18+</option>
+                    <option value="Early Childhood">Early Childhood</option>
+                    <option value="Everyone (China)">Everyone (China)</option>
+                  </select>
+            </div>
+            <button type="submit" class="query-button">Ricerca</button>
+          </div>
+        </form>
+      </div>
+      <div class="query-container">
         <div class="query-title">Ricerca ordinata per rating recensione</div>
+        <h4 class = "info-box"> Mostra il database ordinato per percentuale di rating</h4>
         <form action="/query/find_orderby_rating" method="post">
           <button type="submit" class="query-button">Ricerca</button>
         </form>
@@ -282,7 +340,16 @@
         </div>
       </div>
 
-      <div class="query-container">QUERY</div>
+      <div class="query-container">
+        <div class="query-title">Ricerca rapporto Rating/Recensioni ordinati per prezzo</div>
+        <h4 class = "info-box"> Ricerca i 50 giochi migliori in termini di rapporto tra rating e numero di recensioni,
+        ordinati per prezzo crescente</h4>
+        <form action="/query/find_by_rating_ratio" method="post">
+          <div class="query-1">
+            <button type="submit" class="query-button">Ricerca</button>
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>
