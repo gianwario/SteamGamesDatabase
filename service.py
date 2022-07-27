@@ -72,8 +72,8 @@ def insert_game():
     if img_url == None or img_url == "":
         img_url = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png"
 
-    reviews = {'count': request.form.get("n_rev"),
-               'value': request.form.get("rating")}
+    reviews = {'count': int(request.form.get("n_rev")),
+               'value': int(request.form.get("rating"))}
     price = request.form.get("price")
     pegi = request.form.get("pegi")
     categories = request.form.getlist("categories")
@@ -107,8 +107,8 @@ def update_game():
     if img_url == None or img_url == "":
         img_url = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png"
 
-    reviews = {'count': request.form.get("n_rev"),
-               'value': request.form.get("rating")}
+    reviews = {'count': int(request.form.get("n_rev")),
+               'value': int(request.form.get("rating"))}
     price = request.form.get("price")
     pegi = request.form.get("pegi")
     categories = request.form.getlist("categories")
@@ -126,6 +126,6 @@ def update_game():
 def delete():
     url = request.form["url"] 
     results = query.delete_by_url(url)
-    return render_template("query.html", results=results, size=len(results), title="Gioco eliminato")
+    return render_template("index.html")
 
 app.run(port=5005)

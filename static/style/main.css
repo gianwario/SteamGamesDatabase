@@ -29,11 +29,20 @@ header a {
 
 a {
     text-decoration: none;
-    color: #071120;
+    color: white;
 }
 
 a:visited {
-    color: #384456;
+    color: white;
+}
+
+.gameurl {
+    text-decoration: none;
+    color: #071120;
+}
+
+.gameurl:visited {
+    color: #071120;
 }
 
 #home {

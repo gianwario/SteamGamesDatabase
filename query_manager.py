@@ -8,7 +8,7 @@ def insert_new_game(date, name, img_url, pegi_desc, price, reviews, tags, url):
                 'img_url': img_url,
                 'name': name,
                 'pegi_desc': pegi_desc,
-                'price': price,
+                'price': float(price),
                 'reviews': reviews,
                 'tags': tags,
                 'url': url}
@@ -23,7 +23,7 @@ def update_game(date, name, img_url, pegi_desc, price, reviews, tags, url):
                 'img_url': img_url,
                 'name': name,
                 'pegi_desc': pegi_desc,
-                'price': price,
+                'price': float(price),
                 'reviews': reviews,
                 'tags': tags,
                 'url': url}}
@@ -35,7 +35,7 @@ def update_game(date, name, img_url, pegi_desc, price, reviews, tags, url):
 def delete_by_url(url):
     collection = mongo_connection()
     collection.delete_one({"url":url})
-    return list(find_game_by_url(url))
+    return find_game_by_url(url)
 
 
 # ricerca per id
@@ -61,13 +61,13 @@ def find_game_by_category(search):
 # tutte le possibili ricerche per la recensione (strutturato)
 def find_game_by_review_count(search): 
     collection = mongo_connection()
-    query = collection.find({"reviews.count": {"$gt": search}})
+    query = collection.find({"reviews.count": {"$gt": int(search)}})
     
     return list(query)
 
 def find_game_by_review_rating(search): 
     collection = mongo_connection()
-    query = collection.find({"reviews.value": {"$gt": search}})
+    query = collection.find({"reviews.value": {"$gt": int(search)}})
     
     return list(query)
 
@@ -85,4 +85,4 @@ def find_game_orderby_rating():
     
     return list(query)
     
-# consigliare 10 giochi con buon rapporto prezzo/recensione (ordiniamo per #recensioni/valore_recensione e per prezzo)
+# consigliare 20 giochi con buon rapporto prezzo/recensione (ordiniamo per #recensioni/valore_recensione e per prezzo)
